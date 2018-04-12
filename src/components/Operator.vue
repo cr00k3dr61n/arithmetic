@@ -10,7 +10,7 @@ export default {
   props: {
     symbol: {
       type: String,
-      default: '',
+      default: ''
     }
   }
 }
@@ -20,5 +20,6 @@ export default {
 <style scoped>
 .Operator {
   width:10%;
+  text-align: center;
 }
 </style>

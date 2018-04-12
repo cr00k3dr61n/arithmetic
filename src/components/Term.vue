@@ -1,20 +1,27 @@
 <template>
-  <div class="Term">
-    <div class="numerator"><H4>2</H4></div>
+  <div class="Term" v-bind:id="term.id">
+    <H4>{{ term.numerator }}</H4>
     <hr>
-    <div class="denominator"><H4>5</H4></div>
+    <H4>{{ term.denominator }}</H4>
   </div>
 </template>
 
 <script>
 export default {
   name: 'Term',
+  props: {
+    term: {
+      type: Object,
+      required: true
+    }
+  }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .Term {
-  width:20%;
+  width:25%;
+  text-align: center;
 }
 </style>

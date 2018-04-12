@@ -2,23 +2,22 @@
   <div id="app">
     <div class="container">
       <div class="row nav-bar">
-        <div class="two columns">
-          <h6>Modules</h6>
+        <div class="one-third column">
+          <h6><font-awesome-icon :icon="['fas', 'bars']" size="lg" style="color:darkslategrey;padding:0 5px"/>Modules</h6>
         </div>
-        <div class="eight columns">
+        <div class="one-third column">
         </div>
-        <div class="two columns" style="text-align:right">
-          <font-awesome-icon :icon="['fas', 'user']" size="lg"/>
+        <div class="one-third column" style="text-align:right">
+          <h6><font-awesome-icon :icon="['fas', 'user']" size="lg" style="color:darkslategrey;padding:0 5px"/>Profile</h6>
         </div>
       </div>
       <div class="row">
-        <div class="two columns"></div>
-        <div class="eight columns">
+        <div class="three columns">&nbsp;</div>
+        <div class="nine columns">
           <h2>Arithmetic</h2>
           <p>Solve the equation below.</p>
           <Equation />
         </div>
-        <div class="two columns"></div>
       </div>
     </div>
   </div>
@@ -28,13 +27,13 @@
 <script>
 import Equation from './components/Equation'
 import FontAwesomeIcon from '@fortawesome/vue-fontawesome'
-import { faUserCircle } from '@fortawesome/fontawesome-free-solid'
+import { faUserCircle, faBars } from '@fortawesome/fontawesome-free-solid'
 
 export default {
   name: 'App',
   computed: {
     icon () {
-      return faUserCircle
+      return (faUserCircle, faBars)
     }
   },
   components: {
@@ -45,14 +44,21 @@ export default {
 </script>
 
 <style>
-@import url('https://fonts.googleapis.com/css?family=Montserrat');
+@import url('https://fonts.googleapis.com/css?family=Montserrat|Bungee+Shade|Montserrat+Alternates');
   .row {
     display: flex;
   }
-    .nav-bar {
-    margin-bottom:20px;
+  .nav-bar {
+    margin-bottom:0px;
   }
-  h2,h6 {
-    color: darkslateblue;
+  h2 {
+    color: darkslategray;
+    font-family: "Bungee Shade", sans-serif;
     font-weight: 900;
-  }</style>
+  }
+  h6 {
+    color: darkslategray;
+    font-family: "Montserrat Alternates", sans-serif;
+    font-weight: 900;
+  }
+</style>
