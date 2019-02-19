@@ -1,78 +1,27 @@
 <template>
   <div class="Equation">
-      <Term v-if="term" :term="term[0]"/>
-      <Operator symbol="+" />
-      <Term v-if="term" :term="term[1]" />
-      <Operator symbol="="/>
-      <Answer :answer="answer" @keydown.enter="checkAnswer" v-on:click="checkAnswer" />
+    <Term
+      v-for="term in terms"
+      :term="term"
+      :key="term.index"/>
+    <h4>=</h4>
   </div>
 </template>
 
 <script>
 import Term from './Term.vue'
 import Operator from './Operator.vue'
-import Answer from './Answer.vue'
-
-let nextTermId = 0
 
 export default {
+  name: 'Equation',
   components: {
     Term,
-    Operator,
-    Answer
+    Operator
   },
-  data () {
-    return {
-      answer: {
-        numerator: '',
-        denominator: ''
-      },
-      term: [
-        {
-          termid: nextTermId++,
-          numerator: this.getRandomNumber(),
-          denominator: this.getRandomNumber()
-        },
-        {
-          termid: nextTermId++,
-          numerator: this.getRandomNumber(),
-          denominator: this.getRandomNumber()
-        }
-      ]
-    }
-  },
-  methods: {
-    getRandomNumber () {
-      var randomNumberBetween1and10 = Math.floor(Math.random() * 10) + 1
-      return randomNumberBetween1and10
-    },
-    getNewTerm () {
-      this.term.numerator = this.getRandomNumber()
-      this.term.denominator = this.getRandomNumber()
-    },
-  checkAnswer () {
-      const trimmedAnswerNumerator = parseFloat(this.answer.numerator.trim())
-      const trimmedAnswerDenominator = parseFloat(this.answer.denominator.trim())
-      const trimmedAnswer = trimmedAnswerNumerator / trimmedAnswerDenominator
-      if (Number.isNaN(trimmedAnswer)) {
-        alert('Please enter a number.')
-        }
-      else {
-        const termFloat1 = this.term[0].numerator / this.term[0].denominator
-        const termFloat2 = this.term[1].numerator / this.term[1].denominator
-        if (trimmedAnswer === (termFloat1 + termFloat2)) {
-          alert('Correct!')
-          }
-        else {
-          alert('Try again!')
-          }
-        this.answer.numerator = ''
-        this.answer.denominator = ''
-        this.term[0].numerator = this.getRandomNumber()
-        this.term[0].denominator = this.getRandomNumber()
-        this.term[1].numerator = this.getRandomNumber()
-        this.term[1].denominator = this.getRandomNumber()
-      }
+  props: {
+    terms: {
+      type: Array,
+      required: true
     }
   }
 }
@@ -82,6 +31,6 @@ export default {
 <style scoped>
 .Equation {
   display:flex;
-  flex-wrap: wrap
+  flex-wrap: nowrap;
 }
 </style>
