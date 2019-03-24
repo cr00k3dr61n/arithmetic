@@ -31,6 +31,6 @@ export default {
 <style scoped>
 .Equation {
   display:flex;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
 }
 </style>

@@ -80,7 +80,7 @@ export default {
   .Answer {
     width: 30%;
     display: flex;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
   }
   .input {
     width:45px;
