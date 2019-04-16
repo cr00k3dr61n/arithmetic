@@ -4,6 +4,7 @@ import Vue from 'vue'
 import App from './App'
 import VueFlashMessage from 'vue-flash-message'
 import store from './store'
+import router from './router.js'
 
 Vue.config.productionTip = false
 
@@ -13,6 +14,7 @@ Vue.use(VueFlashMessage, { messageOptions: { timeout: 3000 } });
 
 /* eslint-disable no-new */
 new Vue({
+  router,
   store,
   el: '#app',
   components: { App },
