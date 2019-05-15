@@ -4,6 +4,12 @@
       class="login"
       @submit.prevent="login">
       <h1>Sign in</h1>
+      <label>Username</label>
+      <input
+        v-model="username"
+        required
+        type="username"
+        placeholder="Username">
       <label>Email</label>
       <input
         v-model="email"
@@ -26,6 +32,7 @@
     data () {
 
       return {
+        username: '',
         email: '',
         password: ''
       }
@@ -34,7 +41,7 @@
     methods: {
       login () {
 
-        const creds = (this.email, this.password)
+        const creds = (this.username, this.password)
 
         this.$store.dispatch('login', creds).
        then(() => this.$router.push('/')).

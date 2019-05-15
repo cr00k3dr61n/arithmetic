@@ -78,18 +78,18 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
   .Answer {
-    width: 30%;
+    width: 45%;
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
   }
   .input {
-    width:45px;
+    width: 60%;
     border: 1px solid darkslategrey;
   }
   .coefficient {
-    width: 30%;
+    width: 50%;
   }
   .fraction {
-    width: 70%;
+    width: 50%;
   }
 </style>

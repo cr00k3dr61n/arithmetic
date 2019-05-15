@@ -30,7 +30,11 @@
         </div>
       </div>
       <div class="row">
-        <div class="one column">&nbsp;</div>
+        <div class="one column">
+          <flash-message
+            transition-name="flash"
+            class="flashpool"/>
+        </div>
         <div class="ten columns">
           <router-view/>
         </div>
@@ -43,19 +47,13 @@
 <style src="./skeleton.css"></style>
 <script>
 /* eslint-disable */
-import Vue from 'vue'
-import router from './router.js'
 import FontAwesomeIcon from '@fortawesome/vue-fontawesome'
 import { faUserCircle, faBars } from '@fortawesome/fontawesome-free-solid'
 
 export default {
   name: 'App',
   components: {
-    FontAwesomeIcon,
-  },
-  data () {
-
-    return {}
+    FontAwesomeIcon
   },
   /*created () {
     this.$http.interceptors.response.use(undefined, function (err) {
@@ -79,12 +77,6 @@ export default {
       return this.$store.getters.isLoggedIn
     }
   },
- /* created() {
-      for (var i = 0; i < this.numberTerms; i++) {
-        this.terms[i] = this.newTerm()
-      }
-      return this.terms
-  },*/
   methods: {}
 }
 </script>

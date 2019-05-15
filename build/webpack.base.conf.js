@@ -1,18 +1,25 @@
-'use strict'
+
+
 const path = require('path')
 const utils = require('./utils')
 const config = require('../config')
 const vueLoaderConfig = require('./vue-loader.conf')
+const BundleTracker = require('webpack-bundle-tracker')
 
 function resolve (dir) {
+
   return path.join(__dirname, '..', dir)
+
 }
 
 const createLintingRule = () => ({
   test: /\.(js|vue)$/,
   loader: 'eslint-loader',
   enforce: 'pre',
-  include: [resolve('src'), resolve('test')],
+  include: [
+resolve('src'),
+resolve('test')
+],
   options: {
     formatter: require('eslint-friendly-formatter'),
     emitWarning: !config.dev.showEslintErrorsInOverlay
@@ -21,9 +28,7 @@ const createLintingRule = () => ({
 
 module.exports = {
   context: path.resolve(__dirname, '../'),
-  entry: {
-    app: './src/main.js'
-  },
+  entry: { app: './src/main.js' },
   output: {
     path: config.build.assetsRoot,
     filename: '[name].js',
@@ -32,15 +37,21 @@ module.exports = {
       : config.dev.assetsPublicPath
   },
   resolve: {
-    extensions: ['.js', '.vue', '.json'],
+    extensions: [
+'.js',
+'.vue',
+'.json'
+],
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
       '@': resolve('src'),
+      '__STATIC__': resolve('static')
     }
   },
+  plugins: [new BundleTracker({ filename: './webpack-stats.json' })],
   module: {
     rules: [
-      ...(config.dev.useEslint ? [createLintingRule()] : []),
+      ...config.dev.useEslint ? [createLintingRule()] : [],
       {
         test: /\.vue$/,
         loader: 'vue-loader',
@@ -49,7 +60,11 @@ module.exports = {
       {
         test: /\.js$/,
         loader: 'babel-loader',
-        include: [resolve('src'), resolve('test'), resolve('node_modules/webpack-dev-server/client')]
+        include: [
+resolve('src'),
+resolve('test'),
+resolve('node_modules/webpack-dev-server/client')
+]
       },
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
@@ -77,24 +92,28 @@ module.exports = {
       },
       {
         test: /.less$/,
-        use: [{
-        loader: 'style-loader'
-        }, {
-        loader: 'css-loader'
-        }, {
-        loader: 'less-loader'
-        }]
+        use: [
+{ loader: 'style-loader' },
+{ loader: 'css-loader' },
+{ loader: 'less-loader' }
+]
       },
-      { test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "url-loader?limit=10000&mimetype=application/font-woff" },
-      { test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "file-loader" }
+      {
+ test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+loader: 'url-loader?limit=10000&mimetype=application/font-woff'
+},
+      {
+ test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+loader: 'file-loader'
+}
     ]
   },
   node: {
-    // prevent webpack from injecting useless setImmediate polyfill because Vue
-    // source contains it (although only uses it if it's native).
+    // Prevent webpack from injecting useless setImmediate polyfill because Vue
+    // Source contains it (although only uses it if it's native).
     setImmediate: false,
-    // prevent webpack from injecting mocks to Node native modules
-    // that does not make sense for the client
+    // Prevent webpack from injecting mocks to Node native modules
+    // That does not make sense for the client
     dgram: 'empty',
     fs: 'empty',
     net: 'empty',

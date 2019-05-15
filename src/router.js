@@ -3,7 +3,6 @@ import VueRouter from 'vue-router'
 import store from './store'
 import Login from './components/Login.vue'
 import Register from './components/Register.vue'
-import Home from './views/Home.vue'
 import About from './views/About.vue'
 import Learner from './views/Learner.vue'
 import Arithmetic from './views/Arithmetic.vue'
@@ -15,7 +14,7 @@ const router = new VueRouter({
   routes: [
     {
       path: '/',
-      name: 'arithmetic',
+      name: 'home',
       component: Arithmetic
     },
     {
